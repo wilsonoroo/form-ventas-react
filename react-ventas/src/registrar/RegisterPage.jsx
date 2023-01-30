@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { guardarRegistro,  obtenerCalzados,  obtenerDistribuidor, checkEmailExists } from '../firebase/regService'
 import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
-// import miImagen from '/../../'
+import Swal from 'sweetalert2'
+import miImagen from './somti.png'
 import * as Yup from 'yup';
 
 
@@ -17,8 +18,8 @@ export const RegisterPage = () => {
   const [loading, setLoading] = useState(true);  
   const [calzados, setCalzados] =useState([]);
   const [selectedGrid, setSelectedGrid] = useState(null);
-  const imageUrl = 'https://firebasestorage.googleapis.com/v0/b/somti-ventas.appspot.com/o/somti.png?alt=media&token=2cb32622-94aa-442b-81ec-71c36f93151a';
-
+  // const imageUrl = 'https://firebasestorage.googleapis.com/v0/b/somti-ventas.appspot.com/o/somti.png?alt=media&token=2cb32622-94aa-442b-81ec-71c36f93151a';
+  // const imageUrl = '../../assets/images/somti.png';
   
   const validationSchema = Yup.object().shape({
     nombre: Yup.string()
@@ -42,7 +43,7 @@ export const RegisterPage = () => {
      .required('Selecciona 1 calzado'),
   });
 
-  const { handleChange, values, handleSubmit, errors, touched} = useFormik({
+  const { handleChange, values, handleSubmit, errors, touched, resetForm} = useFormik({
     initialValues: {
       nombre: '',
       email: '',
@@ -54,6 +55,13 @@ export const RegisterPage = () => {
     onSubmit: (values) => {
       console.log(values)
       guardarRegistro(values.nombre, values.email, values.edad, values.empresa, values.calzado );
+      Swal.fire({
+        title: '¡Enviado!',
+        text: 'Tu formulario ha sido enviado con éxito.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+      resetForm();
     },
     validationSchema,
   
@@ -67,6 +75,7 @@ export const RegisterPage = () => {
     setLoading(false);
     // console.log(distribuidores)
   }));
+  // setLoading(false);
   obtenerCalzados(id).then((calzados) => calzados.forEach((element) => {
     setCalzados((old) => [...old, element])
     // console.log(calzados)
@@ -94,7 +103,7 @@ export const RegisterPage = () => {
         >
           <Grid container>
             <Grid item xs={ 12} sx={{mt:10}}>
-              <img src={imageUrl} style={{  display: 'block', margin: '0 auto'  }} />
+              <img src={miImagen} style={{  display: 'block', margin: '0 auto'  }} alt='json'/>
             </Grid>
           </Grid>
           <Grid item xs={ 12 } sx={{ mb:2 }}>         
