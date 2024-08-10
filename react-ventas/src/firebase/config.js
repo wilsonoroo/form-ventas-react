@@ -6,13 +6,12 @@ import 'firebase/firestore';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAoDybAC6JQzx2AlVVCP01gtjFiU2Meq74",
-  authDomain: "somti-ventas.firebaseapp.com",
-  projectId: "somti-ventas",
-  storageBucket: "somti-ventas.appspot.com",
-  messagingSenderId: "921784227942",
-  appId: "1:921784227942:web:3622fab2df1ffd0b7d75a7",
-  measurementId: "G-WWBLVR7Q1T"
+  apiKey: "AIzaSyCYb-uQ9PLuW8M6V-rm_kV8h3MdZPr3ujM",
+  authDomain: "proyecto-practica-1519b.firebaseapp.com",
+  projectId: "proyecto-practica-1519b",
+  storageBucket: "proyecto-practica-1519b.appspot.com",
+  messagingSenderId: "357536952332",
+  appId: "1:357536952332:web:f36136e063370b9d587e29"
 };
 
 // Initialize Firebase
